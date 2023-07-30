@@ -25,11 +25,6 @@ function init() {
 function walk() {
    let el;
 
-   let fieldset = document.querySelector('fieldset[legend="Traversal"]');
-   let textarea = document.createElement('textarea');
-   textarea.id = 'walk-output';
-   fieldset.appendChild(textarea);
-
    el = document.getElementById('p1');
    showNode(el);
 
