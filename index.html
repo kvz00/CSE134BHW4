@@ -17,6 +17,12 @@
          --darkcolor4 : darkgoldenrod;
          --darkcolor5 : darkred;
          --darkcolor6 : darkmagenta;
+
+            --card-color1: #ffefc2;
+            --card-color2: #410579;
+            --padding: 10px;
+            --margin: 10px;
+            --border-radius: 5px;
         }
 
         label {
@@ -52,6 +58,16 @@
             animation-direction: alternate;
         }
 
+        .shmancy {
+            animation: changeColor 5s infinite;
+        }
+
+        @keyframes changeColor {
+            0% { color: red; }
+            50% { color: blue; }
+            100% { color: green; }
+        }
+
         @keyframes backgroundColorPalette {
             0% {background: var(--color1);}
             25% {background: #60d394;}
@@ -59,12 +75,32 @@
             75% {background: #ffd97d;}
             100% {background: #ff9b85;}
         }
+
+        .card {
+            background: var(--card-color1);
+            border-radius: var(--border-radius);
+            padding: var(--padding);
+            margin: var(--margin);
+            width: 200px;
+            box-shadow: 0 4px 6px 0 var(--card-color2);
+        }
+
+        .card-img-top {
+            width: 100%;
+        }
+
+        .card-title {
+            color: var(--card-color2);
+            margin: var(--margin) 0;
+        }
+
     </style>
 </head>
 <body>
 <!-- start of HTML demo -->
 <h1>Vanilla DOM Manipulation</h1>
 <p id="p1">This is a <em>test</em> of the DOM</p>
+<br>
 
 <section id="controls">
 <h2>Demos</h2>
@@ -73,7 +109,11 @@
         <legend>Traversal</legend>
         <label for="walkBtn">Basic Traversal</label>
         <input type="button" id="walkBtn" value="Walk">
+
+        <input type="button" id="advancedWalkBtn" value="Advanced Walk">
+        <br>
         <textarea id="walk-output"></textarea>
+
         <!--
             Q1a) Modify the simple walk button example to not use alerts but instead to print out the node information on the page in a <textarea> within this fieldset. Using appropriate spacing or returns, so we can see each step
 
@@ -89,6 +129,8 @@
         <label for="modifyBtn">Simple Modification</label>
         <input type="button" id="modifyBtn" value="Modify">
 
+        <input type="button" id="advancedModifyBtn" value="Advanced Modify">
+
         <!--
             Q2) Add a new button "Advanced Modify" that does the following:
             1.  Changes the text of the h1 to say "DOM Manipulation is Fun!"
@@ -97,10 +139,22 @@
         -->
     </fieldset>
 
-    <fieldset>
+    <fieldset id="addNewElement">
         <legend>Add</legend>
         <label for="addBtn">Basic Addition</label>
         <input type="button" id="addBtn" value="Add">
+
+        <label for="addBtn">Add Element</label>
+        <input type="button" id="addElementBtn" value="Add">
+
+        <label for="elementType">Choose an element type:</label>
+        <select id="elementType">
+            <option value="TextNode">Text Node</option>
+            <option value="Comment">Comment</option>
+            <option value="Element">Element</option>
+        </select>
+        <label for="contentInput">Enter content:</label>
+        <input type="text" id="contentInput">
 
         <!--
             Q3) Add a select menu that allows you to add a new element to the DOM.  The select menu should have the following options: Text Node, Comment, and Element. When you select one of these options and click the button, the appropriate element should be added to the DOM.  You may want to define an output tag to put the newly created elements in it and style it in a fashion with a border or background color, so you can tell it is new content.  You will need a corresponding text field to define the contents of the text node, comment text, or tag name you want to insert.  By default set the text of any added element to say "New Element" or "New Comment" or "New Text Node" depending on the type of element you are adding but add in the current date and time using a JS Date object.  You can use the toLocaleString() method to get a nicely formatted date and time string.
@@ -112,6 +166,15 @@
         <legend>Remove</legend>
         <label for="removeBtn">Simple Delete</label>
         <input type="button" id="removeBtn" value="Remove">
+
+        <label for="safeDelete">Safe Delete</label>
+        <input type="button" id="safeDelete" value="Delete">
+
+        <label for="selectDelete">Delete By Selector</label>
+        <input type="button" id="selectDelete" value="Delete">
+        <label for="selector">Enter CSS Selector:</label>
+        <input type="text" id="selector">
+
         <!--
 
           Q4a) Safe Delete
@@ -124,6 +187,11 @@
 
     <fieldset>
         <legend>Clone</legend>
+        <label for="cloneBtn">Basic Clone</label>
+        <input type="button" id="cloneBtn" value="Clone">
+        <label for="advancedCloneBtn">Advanced Clone</label>
+        <input type="button" id="advancedCloneBtn" value="Advanced Clone">
+        <div id="clonedElements"></div>
         <!--
           Q5a) Add a button "Basic Clone" that clones the p tag and adds it to the DOM.  You can add it to the same area you added new content.  Be cautious with your cloning to modify attributes
 
@@ -143,4 +211,12 @@
 <!-- put all your new code in this dom.js file -->
 <script src="dom.js"></script>
 </body>
+<template id="cardTemplate">
+    <div class="card">
+        <img class="card-img" src="card_image.jpg" alt="Card Image">
+        <h2 class="card-title">Card title.</h2>
+        <p class="card-text">Text of the card.</p>
+        <a class="card-link" href="index.html">Link to something.</a>
+    </div>
+</template>
 </html>
