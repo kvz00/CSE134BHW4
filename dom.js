@@ -27,8 +27,9 @@ function walk() {
 
    let fieldset = document.querySelector('fieldset[legend="Traversal"]');
    let textarea = document.createElement('textarea');
+   textarea.id = 'walk-output';
    fieldset.appendChild(textarea);
-   
+
    el = document.getElementById('p1');
    showNode(el);
 
@@ -55,7 +56,10 @@ function showNode(el) {
     let nodeName = el.nodeName;
     let nodeValue = el.nodeValue;
 
-    alert(`Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}`);
+    let textarea = document.getElementById('walk-output');
+
+    textarea.value += `Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}\n`;
+
 }
 
 function modify() {
